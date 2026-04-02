@@ -1,2 +1,416 @@
 <!DOCTYPE html>
-<html lang
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>叶兴阳英语教学方法 - 双语音标有声读物</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        /* 头部区域 */
+        .header {
+            background: linear-gradient(135deg, #2c5aa0 0%, #4a7bc8 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z" fill="%23ffffff" fill-opacity="0.1" fill-rule="evenodd"/%3E%3C/svg%3E');
+            opacity: 0.3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 特色区域 */
+        .features {
+            padding: 80px 20px;
+            background-color: white;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #2c5aa0;
+            font-weight: 700;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-item {
+            background-color: #f8f9fa;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #2c5aa0;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 资源链接区域 */
+        .resources {
+            padding: 80px 20px;
+            background-color: #f9f9f9;
+        }
+
+        .resources h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #2c5aa0;
+            font-weight: 700;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .resource-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-content {
+            padding: 30px;
+        }
+
+        .resource-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .resource-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .resource-link {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #2c5aa0;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            background-color: #4a7bc8;
+            transform: translateY(-2px);
+        }
+
+        /* 教学理念区域 */
+        .philosophy {
+            padding: 80px 20px;
+            background-color: white;
+        }
+
+        .philosophy h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #2c5aa0;
+            font-weight: 700;
+        }
+
+        .philosophy-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .philosophy-content p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .philosophy-content ul {
+            text-align: left;
+            margin: 30px auto;
+            max-width: 600px;
+        }
+
+        .philosophy-content li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .philosophy-content li:before {
+            content: "•";
+            color: #2c5aa0;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        /* 页脚 */
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header p {
+                font-size: 1.2rem;
+            }
+
+            .features h2,
+            .resources h2,
+            .philosophy h2 {
+                font-size: 2rem;
+            }
+
+            .feature-item,
+            .resource-card {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .features h2,
+            .resources h2,
+            .philosophy h2 {
+                font-size: 1.8rem;
+            }
+
+            .features,
+            .resources,
+            .philosophy {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部区域 -->
+    <header class="header">
+        <div class="container">
+            <h1>叶兴阳英语教学方法</h1>
+            <p>创新的双语音标有声读物，让英语学习更加高效、愉悦</p>
+            <a href="爱丽丝漫游奇遇记 (alice's adventures in wonderland)_001_中英_离线语音电脑/index.html" class="btn">开始学习</a>
+        </div>
+    </header>
+
+    <!-- 特色区域 -->
+    <section class="features">
+        <div class="container">
+            <h2>教学特色</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">📝</div>
+                    <h3>逐词注音翻译</h3>
+                    <p>每个英文单词都配有美式音标与精准中文释义，帮助学习者快速理解单词含义和发音</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎧</div>
+                    <h3>智能语音同步</h3>
+                    <p>双击句子即可播放对应语音，让学习者在阅读的同时训练听力和口语</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>个性化阅读</h3>
+                    <p>可调整字体大小、播放速度等，满足不同学习者的需求</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <h3>离线使用</h3>
+                    <p>所有资源本地化，无需网络连接，随时随地都能学习</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <h3>进度记录</h3>
+                    <p>自动保存阅读进度，让学习者轻松跟踪学习情况</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📚</div>
+                    <h3>经典原著</h3>
+                    <p>基于公共领域英文原著，经叶兴阳老师独家编辑，内容权威可靠</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 资源链接区域 -->
+    <section class="resources">
+        <div class="container">
+            <h2>学习资源</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-content">
+                        <h3>双语音标有声读物</h3>
+                        <p>叶兴阳老师独家编辑的双语音标有声读物，包含《爱丽丝梦游仙境》等经典著作，逐词注音翻译，智能语音同步。</p>
+                        <a href="爱丽丝漫游奇遇记 (alice's adventures in wonderland)_001_中英_离线语音电脑/index.html" class="resource-link">访问资源</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-content">
+                        <h3>美式发音版 PDF</h3>
+                        <p>美式发音版《爱丽丝梦游仙境》PDF文件，适合想要学习美式英语发音的学习者。</p>
+                        <a href="美式书《爱丽丝梦游仙境》，(Alice's Adventures in Wonderland ).pdf" class="resource-link">下载 PDF</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-content">
+                        <h3>英式发音版 PDF</h3>
+                        <p>英式发音版《爱丽丝梦游仙境》PDF文件，适合想要学习英式英语发音的学习者。</p>
+                        <a href="英式书《爱丽丝梦游仙境》，(Alice's Adventures in Wonderland ).pdf" class="resource-link">下载 PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 教学理念区域 -->
+    <section class="philosophy">
+        <div class="container">
+            <h2>教学理念</h2>
+            <div class="philosophy-content">
+                <p>叶兴阳老师的英语教学方法以"沉浸式学习"为核心，通过双语音标有声读物，让学习者在阅读经典原著的同时，自然掌握英语发音和词汇。</p>
+                <ul>
+                    <li><strong>以兴趣为导向</strong> - 选择经典文学作品，让学习过程更加有趣</li>
+                    <li><strong>注重基础</strong> - 逐词注音翻译，确保学习者掌握每个单词</li>
+                    <li><strong>多感官学习</strong> - 结合视觉、听觉，提高学习效果</li>
+                    <li><strong>个性化体验</strong> - 提供多种学习设置，满足不同学习者的需求</li>
+                    <li><strong>持续进步</strong> - 自动记录学习进度，激励学习者坚持学习</li>
+                </ul>
+                <p>通过这种方法，学习者不仅能够提高英语水平，还能培养对英语文学的兴趣，真正做到"在阅读中学习，在学习中阅读"。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 叶兴阳英语教学方法</p>
+            <p>基于公共领域资源开发</p>
+        </div>
+    </footer>
+</body>
+</html>
