@@ -85,22 +85,22 @@
 
         /* 资源链接区域 */
         .resources {
-            padding: 80px 20px;
-            background-color: #f8f9fa;
+            padding: 60px 20px;
+            background-color: white;
         }
 
         .resources h2 {
             text-align: center;
             font-size: 2.2rem;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: #2c3e50;
             font-weight: 700;
         }
 
         .resources-subtitle {
             text-align: center;
-            font-size: 1.1rem;
-            margin-bottom: 60px;
+            font-size: 1rem;
+            margin-bottom: 40px;
             color: #7f8c8d;
             max-width: 700px;
             margin-left: auto;
@@ -109,31 +109,32 @@
 
         .resources-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         .resource-card {
-            background-color: white;
-            border-radius: 15px;
+            background-color: #f8f9fa;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             border: 1px solid #e9ecef;
         }
 
         .resource-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
         .resource-badge {
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
             font-weight: 600;
             display: inline-block;
-            margin: 20px 0 15px 20px;
+            margin: 15px 0 10px 15px;
         }
 
         .badge-primary {
@@ -147,37 +148,39 @@
         }
 
         .resource-content {
-            padding: 0 20px 30px;
+            padding: 0 15px 20px;
         }
 
         .resource-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
             color: #2c3e50;
             font-weight: 600;
         }
 
         .resource-card p {
             color: #7f8c8d;
-            margin-bottom: 25px;
-            line-height: 1.6;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-size: 0.95rem;
         }
 
         .resource-link {
             display: inline-block;
-            padding: 12px 28px;
+            padding: 10px 20px;
             background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
             color: white;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 20px;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+            font-size: 0.9rem;
         }
 
         .resource-link:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
         }
 
         /* 特色区域 */
@@ -341,6 +344,11 @@
             .feature-item {
                 padding: 25px 15px;
             }
+
+            .resources-grid {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+            }
         }
 
         @media (max-width: 480px) {
@@ -355,10 +363,6 @@
             .btn {
                 padding: 12px 24px;
                 font-size: 1rem;
-            }
-
-            .resources-grid {
-                grid-template-columns: 1fr;
             }
 
             .resource-badge {
@@ -381,7 +385,7 @@
             <div class="header-content">
                 <h1>叶兴阳英语教学方法</h1>
                 <p>创新的双语音标有声读物，让英语学习更加高效、愉悦</p>
-                <a href="爱丽丝漫游奇遇记 (alice's adventures in wonderland)_001_中英_离线语音电脑/index.html" class="btn">立即试用</a>
+                <a href="爱丽丝漫游奇遇记 (alice's adventures in wonderland)_001_中英_离线语音电脑/index.html" class="btn" target="_blank">立即试用</a>
             </div>
         </div>
     </header>
@@ -393,11 +397,19 @@
             <p class="resources-subtitle">以下资源均可免费试用，体验叶兴阳老师的创新教学方法，感受双语音标有声读物的独特魅力</p>
             <div class="resources-grid">
                 <div class="resource-card">
+                    <div class="resource-badge badge-primary">全部图书</div>
+                    <div class="resource-content">
+                        <h3>有声书定价目录</h3>
+                        <p>浏览海量有声书资源，查看总时长和价格范围，找到适合您的学习内容。</p>
+                        <a href="books_unique.html" class="resource-link" target="_blank">浏览目录</a>
+                    </div>
+                </div>
+                <div class="resource-card">
                     <div class="resource-badge badge-primary">推荐试用</div>
                     <div class="resource-content">
                         <h3>双语音标有声读物</h3>
                         <p>叶兴阳老师独家编辑的双语音标有声读物，包含《爱丽丝梦游仙境》等经典著作，逐词注音翻译，智能语音同步，让学习更加高效。</p>
-                        <a href="爱丽丝漫游奇遇记 (alice's adventures in wonderland)_001_中英_离线语音电脑/index.html" class="resource-link">立即试用</a>
+                        <a href="爱丽丝漫游奇遇记 (alice's adventures in wonderland)_001_中英_离线语音电脑/index.html" class="resource-link" target="_blank">立即试用</a>
                     </div>
                 </div>
                 <div class="resource-card">
@@ -405,7 +417,7 @@
                     <div class="resource-content">
                         <h3>美式发音版 PDF</h3>
                         <p>美式发音版《爱丽丝梦游仙境》PDF文件，适合想要学习美式英语发音的学习者，包含详细的音标标注和中文翻译。</p>
-                        <a href="美式书《爱丽丝梦游仙境》，(Alice's Adventures in Wonderland ).pdf" class="resource-link">免费下载</a>
+                        <a href="美式书《爱丽丝梦游仙境》，(Alice's Adventures in Wonderland ).pdf" class="resource-link" target="_blank">免费下载</a>
                     </div>
                 </div>
                 <div class="resource-card">
@@ -413,7 +425,7 @@
                     <div class="resource-content">
                         <h3>英式发音版 PDF</h3>
                         <p>英式发音版《爱丽丝梦游仙境》PDF文件，适合想要学习英式英语发音的学习者，包含详细的音标标注和中文翻译。</p>
-                        <a href="英式书《爱丽丝梦游仙境》，(Alice's Adventures in Wonderland ).pdf" class="resource-link">免费下载</a>
+                        <a href="英式书《爱丽丝梦游仙境》，(Alice's Adventures in Wonderland ).pdf" class="resource-link" target="_blank">免费下载</a>
                     </div>
                 </div>
             </div>
