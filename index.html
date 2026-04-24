@@ -621,6 +621,26 @@
             }
         }
 
+        .list-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 30px;
+            color: #7f8c8d;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.95);
+            z-index: 10;
+        }
+
+        .list-loading.hidden {
+            display: none;
+        }
+
         .modal-error {
             padding: 40px 30px;
             text-align: center;
@@ -844,6 +864,10 @@
                 <div class="stat-item"><div class="stat-value" id="totalPrice">-</div><div class="stat-label">价格范围</div></div>
             </div>
             <div class="virtual-scroll-container" id="scrollContainer">
+                <div class="list-loading" id="listLoading">
+                    <div class="loading-spinner"></div>
+                    <div>正在加载书库...</div>
+                </div>
                 <div class="virtual-scroll-spacer" id="scrollSpacer">
                     <div class="book-grid" id="bookGrid"></div>
                 </div>
@@ -141010,7 +141034,7 @@ async function openModal(book) {
     
     document.getElementById('modalBody').innerHTML = `
         <div class="modal-loading">
-            <div class="loading-spinner"></div>
+            <div class="loading-spinner" id="loadingSpinner"></div>
             <div>正在从书库加载《${book.nameZh}》...</div>
         </div>
     `;
@@ -141035,7 +141059,15 @@ async function loadBookContent(bookId) {
         const modalBody = document.getElementById('modalBody');
         
         const iframeUrl = `https://www.gutenberg.org/cache/epub/${cleanId}/pg${cleanId}.txt`;
-        modalBody.innerHTML = `<iframe src="${iframeUrl}" style="width:100%;height:80vh;border:none;"></iframe>`;
+        const iframe = document.createElement('iframe');
+        iframe.src = iframeUrl;
+        iframe.style = 'width:100%;height:80vh;border:none;background-color:#fff;';
+        iframe.onload = function() {
+            const spinner = document.getElementById('loadingSpinner');
+            if (spinner) spinner.style.display = 'none';
+        };
+        modalBody.innerHTML = '';
+        modalBody.appendChild(iframe);
         
     } catch (error) {
         if (bookId !== currentBookId) return;
@@ -141097,6 +141129,9 @@ function render() {
 }
 
 function renderCards() {
+    const listLoading = document.getElementById('listLoading');
+    if (listLoading) listLoading.classList.add('hidden');
+    
     const container = document.getElementById('scrollContainer');
     const grid = document.getElementById('bookGrid');
     const scrollTop = container.scrollTop;
