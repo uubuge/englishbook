@@ -130,7 +130,7 @@ function renderCards() {
                 <div class="book-duration"><span class="book-duration-icon">⏱️</span><span>${book.duration}</span></div>
                 <div class="book-price">${book.price.toFixed(2)}<span>元</span></div>
             </div>
-            <div class="book-qq" onclick="event.stopPropagation(); window.open('https://wpa.qq.com/msgrd?v=3&uin=704100972&site=qq&menu=yes', '_blank')">
+            <div class="book-qq" onclick="event.stopPropagation(); window.open('https://qm.qq.com/q/704100972', '_blank')">
                 QQ客服
             </div>
         `;
@@ -157,7 +157,7 @@ async function openModal(book) {
         </div>
         <div class="modal-qq">
             <span>联系客服购买：</span>
-            <a href="https://wpa.qq.com/msgrd?v=3&uin=704100972&site=qq&menu=yes" target="_blank" class="qq-link">
+            <a href="https://qm.qq.com/q/704100972" target="_blank" class="qq-link">
                 QQ客服：704100972
             </a>
         </div>
@@ -195,7 +195,7 @@ async function loadBookContent(bookId) {
          qqDiv.className = 'modal-qq';
          qqDiv.innerHTML = `
              <span>联系客服购买：</span>
-             <a href="https://wpa.qq.com/msgrd?v=3&uin=704100972&site=qq&menu=yes" target="_blank" class="qq-link">
+             <a href="https://qm.qq.com/q/704100972" target="_blank" class="qq-link">
                  QQ客服：704100972
              </a>
          `;
@@ -221,7 +221,7 @@ async function loadBookContent(bookId) {
             </div>
             <div class="modal-qq">
                 <span>联系客服购买：</span>
-                <a href="https://wpa.qq.com/msgrd?v=3&uin=704100972&site=qq&menu=yes" target="_blank" class="qq-link">
+                <a href="https://qm.qq.com/q/704100972" target="_blank" class="qq-link">
                     QQ客服：704100972
                 </a>
             </div>
