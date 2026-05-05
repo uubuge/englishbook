@@ -44,19 +44,19 @@
             height: 60px;
         }
         .nav-logo {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: #3498db;
             text-decoration: none;
         }
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 20px;
         }
         .nav-link {
             color: #7f8c8d;
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: color 0.3s;
             padding: 8px 0;
             border-bottom: 2px solid transparent;
@@ -84,41 +84,82 @@
         }
 
         .page-container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 60px 20px;
         }
 
-        .contact-header {
+        .page-header {
             text-align: center;
             margin-bottom: 50px;
         }
 
-        .contact-header h1 {
+        .page-header h1 {
             font-size: 2.5rem;
             color: #2c3e50;
             margin-bottom: 15px;
         }
 
-        .contact-header p {
+        .page-header p {
             font-size: 1.1rem;
             color: #7f8c8d;
         }
 
-        .contact-card {
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .qrcode-section {
             background: #fff;
             border-radius: 20px;
-            padding: 50px;
+            padding: 40px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .qrcode-section h2 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+
+        .qrcode-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        .qrcode-tip {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+        }
+
+        .contact-list {
+            background: #fff;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-list h2 {
+            font-size: 1.5rem;
+            color: #2c3e50;
             margin-bottom: 30px;
+            text-align: center;
         }
 
         .contact-item {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 20px;
-            padding: 25px 0;
-            border-bottom: 1px solid #e9ecef;
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f0;
         }
 
         .contact-item:last-child {
@@ -133,20 +174,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             flex-shrink: 0;
         }
 
         .contact-info h3 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #2c3e50;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
 
         .contact-info p {
             color: #7f8c8d;
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: 0.95rem;
         }
 
         .contact-info a {
@@ -174,9 +214,6 @@
         }
 
         @media (max-width: 768px) {
-            .contact-card { padding: 30px 20px; }
-            .contact-header h1 { font-size: 1.8rem; }
-            .nav-toggle { display: flex; }
             .nav-links {
                 display: none;
                 position: absolute;
@@ -189,9 +226,33 @@
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
                 z-index: 99;
             }
-            .nav-links.active { display: flex; }
-            .nav-link { padding: 15px 20px; border-bottom: 1px solid #e9ecef; border-bottom-color: transparent; }
-            .nav-link:hover, .nav-link.active { border-bottom-color: transparent; background: #f5f7fa; }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-link {
+                padding: 12px 20px;
+                border-bottom: 1px solid #e9ecef;
+                border-bottom-color: transparent;
+            }
+            .nav-link:hover, .nav-link.active {
+                border-bottom-color: transparent;
+                background: #f5f7fa;
+            }
+            .nav-toggle {
+                display: flex;
+            }
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .page-header h1 { font-size: 1.8rem; }
+            .qrcode-section, .contact-list { padding: 30px 20px; }
+            .qrcode-img { width: 180px; height: 180px; }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 { font-size: 1.5rem; }
+            .contact-item { padding: 15px 0; }
+            .contact-icon { width: 45px; height: 45px; font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -207,57 +268,66 @@
             <div class="nav-links" id="navLinks">
                 <a href="index.html" class="nav-link">首页</a>
                 <a href="books.html" class="nav-link">图书列表</a>
+                <a href="pricing.html" class="nav-link">打包套餐</a>
                 <a href="contact.html" class="nav-link active">联系我们</a>
             </div>
         </div>
     </nav>
 
     <div class="page-container">
-        <div class="contact-header">
-            <h1>联系我们</h1>
-            <p>如果您有任何问题或建议，欢迎随时与我们联系</p>
+        <div class="page-header">
+            <h1>📬 联系我们</h1>
+            <p>有任何问题或建议，欢迎随时与我们联系</p>
         </div>
 
-        <div class="contact-card">
-            <div class="contact-item">
-                <div class="contact-icon">🐧</div>
-                <div class="contact-info">
-                    <h3>QQ客服</h3>
-                    <p><a href="https://wpa.qq.com/msgrd?v=3&uin=704100972&site=qq&menu=yes" target="_blank">704100972</a></p>
-                </div>
+        <div class="contact-wrapper">
+            <div class="qrcode-section">
+                <h2>� 扫码添加客服微信</h2>
+                <img src="/src/微信二维码.jpg" alt="微信二维码" class="qrcode-img">
+                <p class="qrcode-tip">长按识别二维码，或截图保存后打开微信扫描</p>
             </div>
 
-            <div class="contact-item">
-                <div class="contact-icon">📧</div>
-                <div class="contact-info">
-                    <h3>QQ邮箱</h3>
-                    <p><a href="mailto:704100972@qq.com">704100972@qq.com</a></p>
+            <div class="contact-list">
+                <h2>其他联系方式</h2>
+
+                <div class="contact-item">
+                    <div class="contact-icon">�</div>
+                    <div class="contact-info">
+                        <h3>QQ客服</h3>
+                        <p><a href="https://wpa.qq.com/msgrd?v=3&uin=704100972&site=qq&menu=yes" target="_blank">704100972</a></p>
+                    </div>
                 </div>
-            </div>
 
-
-
-            <div class="contact-item">
-                <div class="contact-icon">📱</div>
-                <div class="contact-info">
-                    <h3>联系电话</h3>
-                    <p><a href="tel:1234567890">123-4567-890</a></p>
+                <div class="contact-item">
+                    <div class="contact-icon">�</div>
+                    <div class="contact-info">
+                        <h3>QQ邮箱</h3>
+                        <p><a href="mailto:704100972@qq.com">704100972@qq.com</a></p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="contact-item">
-                <div class="contact-icon">📍</div>
-                <div class="contact-info">
-                    <h3>公司地址</h3>
-                    <p>广东省深圳市南山区科技园</p>
+                <div class="contact-item">
+                    <div class="contact-icon">�</div>
+                    <div class="contact-info">
+                        <h3>联系电话</h3>
+                        <p><a href="tel:1234567890">123-4567-890</a></p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="contact-item">
-                <div class="contact-icon">⏰</div>
-                <div class="contact-info">
-                    <h3>工作时间</h3>
-                    <p>周一至周五：9:00 - 18:00<br>周六至周日：休息</p>
+                <div class="contact-item">
+                    <div class="contact-icon">⏰</div>
+                    <div class="contact-info">
+                        <h3>工作时间</h3>
+                        <p>周一至周五：9:00 - 18:00</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">�</div>
+                    <div class="contact-info">
+                        <h3>公司地址</h3>
+                        <p>广东省深圳市南山区科技园</p>
+                    </div>
                 </div>
             </div>
         </div>
