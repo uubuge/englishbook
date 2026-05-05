@@ -6,6 +6,11 @@ let filteredBooks = [];
 let searchIndex = new Map();
 let currentBookId = null;
 
+let currentPage = 0;
+const itemsPerPage = 50;
+let isLoading = false;
+let hasMore = true;
+
 function initBooksPage() {
     books = booksData;
     filteredBooks = books;
@@ -14,7 +19,7 @@ function initBooksPage() {
     setupScroll();
     setupSearch();
     setupModal();
-    renderCards();
+    resetAndLoad();
 }
 
 function buildSearchIndex() {
@@ -77,6 +82,77 @@ function setupScroll() {
     if (!container) return;
     
     container.style.maxHeight = 'calc(100vh - 350px)';
+    
+    container.addEventListener('scroll', () => {
+        if (isLoading || !hasMore) return;
+        
+        const { scrollTop, scrollHeight, clientHeight } = container;
+        const scrollPercentage = scrollTop / (scrollHeight - clientHeight);
+        
+        if (scrollPercentage >= 0.7) {
+            loadMoreCards();
+        }
+    });
+}
+
+function resetAndLoad() {
+    const grid = document.getElementById('bookGrid');
+    const listLoading = document.getElementById('listLoading');
+    
+    currentPage = 0;
+    hasMore = true;
+    grid.innerHTML = '';
+    
+    if (listLoading) listLoading.classList.remove('hidden');
+    
+    setTimeout(() => {
+        loadMoreCards();
+    }, 100);
+}
+
+function loadMoreCards() {
+    if (isLoading || !hasMore) return;
+    
+    isLoading = true;
+    
+    const grid = document.getElementById('bookGrid');
+    const listLoading = document.getElementById('listLoading');
+    
+    if (listLoading) listLoading.classList.remove('hidden');
+    
+    const start = currentPage * itemsPerPage;
+    const end = Math.min(start + itemsPerPage, filteredBooks.length);
+    const booksToRender = filteredBooks.slice(start, end);
+    
+    setTimeout(() => {
+        const fragment = document.createDocumentFragment();
+        
+        booksToRender.forEach((book) => {
+            const card = document.createElement('div');
+            card.className = 'book-card';
+            card.innerHTML = `
+                <div class="book-title-zh">${book.nameZh}</div>
+                <div class="book-title-en">${book.nameEn}</div>
+                <div class="book-meta">
+                    <div class="book-duration"><span class="book-duration-icon">⏱️</span><span>${book.duration}</span></div>
+                    <div class="book-price">${book.price.toFixed(2)}<span>元</span></div>
+                </div>
+                <div class="book-qq" onclick="event.stopPropagation(); window.open('https://qm.qq.com/q/704100972', '_blank')">
+                    QQ客服
+                </div>
+            `;
+            card.addEventListener('click', () => openModal(book));
+            fragment.appendChild(card);
+        });
+        
+        grid.appendChild(fragment);
+        
+        currentPage++;
+        hasMore = end < filteredBooks.length;
+        
+        if (listLoading) listLoading.classList.add('hidden');
+        isLoading = false;
+    }, 0);
 }
 
 function setupSearch() {
@@ -99,7 +175,7 @@ function setupSearch() {
             }
 
             document.getElementById('scrollContainer').scrollTop = 0;
-            renderCards();
+            resetAndLoad();
         }, 150);
     });
 }
@@ -111,36 +187,7 @@ function setupModal() {
     });
 }
 
-function renderCards() {
-    const listLoading = document.getElementById('listLoading');
-    if (listLoading) listLoading.classList.add('hidden');
 
-    const grid = document.getElementById('bookGrid');
-    if (!grid) return;
-
-    const fragment = document.createDocumentFragment();
-
-    filteredBooks.forEach((book) => {
-        const card = document.createElement('div');
-        card.className = 'book-card';
-        card.innerHTML = `
-            <div class="book-title-zh">${book.nameZh}</div>
-            <div class="book-title-en">${book.nameEn}</div>
-            <div class="book-meta">
-                <div class="book-duration"><span class="book-duration-icon">⏱️</span><span>${book.duration}</span></div>
-                <div class="book-price">${book.price.toFixed(2)}<span>元</span></div>
-            </div>
-            <div class="book-qq" onclick="event.stopPropagation(); window.open('https://qm.qq.com/q/704100972', '_blank')">
-                QQ客服
-            </div>
-        `;
-        card.addEventListener('click', () => openModal(book));
-        fragment.appendChild(card);
-    });
-
-    grid.innerHTML = '';
-    grid.appendChild(fragment);
-}
 
 async function openModal(book) {
     currentBookId = book.id;
