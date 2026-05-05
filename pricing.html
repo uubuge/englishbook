@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电子书打包套餐 - 叶兴阳英语教学方法</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .top-nav {
+            background: #fff;
+            border-bottom: 1px solid #e9ecef;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+        .nav-logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #3498db;
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-link {
+            color: #7f8c8d;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #3498db;
+            border-bottom-color: #3498db;
+        }
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            cursor: pointer;
+            padding: 0;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #3498db;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .pricing-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid #3498db;
+        }
+
+        .pricing-card.featured::before {
+            content: '推荐';
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: #3498db;
+            color: #fff;
+            padding: 5px 40px;
+            font-size: 0.8rem;
+            transform: rotate(45deg);
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .badge-pdf-us {
+            background: #e8f4fd;
+            color: #3498db;
+        }
+
+        .badge-pdf-uk {
+            background: #fef5e7;
+            color: #f39c12;
+        }
+
+        .badge-pdf-300 {
+            background: #e8fce8;
+            color: #27ae60;
+        }
+
+        .badge-bundle {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .pricing-card .description {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            min-height: 50px;
+        }
+
+        .price {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .price-note {
+            font-size: 0.9rem;
+            color: #95a5a6;
+            margin-bottom: 25px;
+        }
+
+        .pricing-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .pricing-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .pricing-btn.qq {
+            background: #12B7F5;
+        }
+
+        .pricing-btn.qq:hover {
+            background: #0fa3e8;
+        }
+
+        .features-section {
+            background: #fff;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .features-section h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .feature-text p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: #fff;
+                flex-direction: column;
+                gap: 0;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                z-index: 99;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-link {
+                padding: 12px 20px;
+                border-bottom: 1px solid #e9ecef;
+                border-bottom-color: transparent;
+            }
+            .nav-link:hover, .nav-link.active {
+                border-bottom-color: transparent;
+                background: #f5f7fa;
+            }
+            .nav-toggle {
+                display: flex;
+            }
+            .page-header h1 { font-size: 1.8rem; }
+            .pricing-card { padding: 25px; }
+            .features-section { padding: 30px 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 { font-size: 1.5rem; }
+            .price { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">叶兴阳英语教学</a>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="books.html" class="nav-link">图书列表</a>
+                <a href="pricing.html" class="nav-link active">打包套餐</a>
+                <a href="contact.html" class="nav-link">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <div class="page-header">
+            <h1>📚 电子书打包套餐</h1>
+            <p>海量资源，超值优惠，让英语学习更高效</p>
+        </div>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-badge badge-pdf-us">美式发音</div>
+                <h3>美式PDF电子书</h3>
+                <p class="description">1000本经典英文原著，配有美式音标标注和中文翻译</p>
+                <div class="price">¥100</div>
+                <div class="price-note">原价 ¥500，现超值优惠</div>
+                <a href="https://wpa.qq.com/msgrd?v=3&uin=704100972&site=qq&menu=yes" target="_blank" class="pricing-btn qq">
+                    🐧 联系购买
+                </a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-badge badge-pdf-uk">英式发音</div>
+                <h3>英式PDF电子书</h3>
+                <p class="description">1000本经典英文原著，配有英式音标标注和中文翻译</p>
+                <div class="price">¥100</div>
+                <div class="price-note">原价 ¥500，现超值优惠</div>
+                <a href="https://wpa.qq.com/msgrd?v=3&uin=704100972&site=qq&menu=yes" target="_blank" class="pricing-btn qq">
+                    🐧 联系购买
+                </a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-badge badge-pdf-300">精选美式</div>
+                <h3>精选美式PDF电子书</h3>
+                <p class="description">300本经典英文原著，配有美式音标标注和中文翻译</p>
+                <div class="price">¥50</div>
+                <div class="price-note">超值入门套装</div>
+                <a href="https://wpa.qq.com/msgrd?v=3&uin=704100972&site=qq&menu=yes" target="_blank" class="pricing-btn qq">
+                    🐧 联系购买
+                </a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-badge badge-pdf-300">精选英式</div>
+                <h3>精选英式PDF电子书</h3>
+                <p class="description">300本经典英文原著，配有英式音标标注和中文翻译</p>
+                <div class="price">¥50</div>
+                <div class="price-note">超值入门套装</div>
+                <a href="https://wpa.qq.com/msgrd?v=3&uin=704100972&site=qq&menu=yes" target="_blank" class="pricing-btn qq">
+                    🐧 联系购买
+                </a>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="pricing-badge badge-bundle">全套尊享</div>
+                <h3>豪华学习套装</h3>
+                <p class="description">1000套：手机软件 + 电脑软件 + 英式PDF + 美式PDF</p>
+                <div class="price">¥500</div>
+                <div class="price-note">原价 ¥2000，全套尊享</div>
+                <a href="https://wpa.qq.com/msgrd?v=3&uin=704100972&site=qq&menu=yes" target="_blank" class="pricing-btn qq">
+                    🐧 联系购买
+                </a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-badge badge-bundle">入门套装</div>
+                <h3>基础学习套装</h3>
+                <p class="description">100套：手机软件 + 电脑软件 + 英式PDF + 美式PDF</p>
+                <div class="price">¥100</div>
+                <div class="price-note">超值入门首选</div>
+                <a href="https://wpa.qq.com/msgrd?v=3&uin=704100972&site=qq&menu=yes" target="_blank" class="pricing-btn qq">
+                    🐧 联系购买
+                </a>
+            </div>
+        </div>
+
+        <div class="features-section">
+            <h2>套餐包含内容</h2>
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-text">
+                        <h4>手机软件</h4>
+                        <p>随时随地学习，碎片时间高效利用</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💻</div>
+                    <div class="feature-text">
+                        <h4>电脑软件</h4>
+                        <p>大屏学习更专注，功能更强大</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🇺🇸</div>
+                    <div class="feature-text">
+                        <h4>美式PDF</h4>
+                        <p>美式发音音标，配套精准中文翻译</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🇬🇧</div>
+                    <div class="feature-text">
+                        <h4>英式PDF</h4>
+                        <p>英式发音音标，配套精准中文翻译</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎧</div>
+                    <div class="feature-text">
+                        <h4>智能语音</h4>
+                        <p>双语音标朗读，发音纯正标准</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📖</div>
+                    <div class="feature-text">
+                        <h4>经典原著</h4>
+                        <p>海量经典英文著作，涵盖各种题材</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 叶兴阳英语教学方法. 版权所有.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const navLinks = document.getElementById('navLinks');
+            if (navToggle && navLinks) {
+                navToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
