@@ -137,8 +137,8 @@ function loadMoreCards() {
                     <div class="book-duration"><span class="book-duration-icon">⏱️</span><span>${book.duration}</span></div>
                     <div class="book-price">${book.price.toFixed(2)}<span>元</span></div>
                 </div>
-                <div class="book-qq" onclick="event.stopPropagation(); window.open('https://qm.qq.com/q/704100972', '_blank')">
-                    QQ客服
+                <div class="book-qq" onclick="event.stopPropagation(); window.open('mqqapi://card/show_pslcard?src_type=internal&version=1&uin=704100972&card_type=person&source=qrcode', '_blank')">
+                    🐧 704100972
                 </div>
             `;
             card.addEventListener('click', () => openModal(book));
