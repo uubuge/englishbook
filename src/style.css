@@ -1254,6 +1254,10 @@ body {
     .contact-item { padding: 15px 0; }
     .contact-icon { width: 45px; height: 45px; font-size: 1.1rem; }
     .price { font-size: 2.2rem; }
+    
+    /* 手机小屏时隐藏统计信息 */
+    .stats { display: none; }
+    .virtual-scroll-container { height: calc(100vh - 350px); }
 }
 
 ::-webkit-scrollbar { width: 6px; }
