@@ -13,7 +13,17 @@ let hasMore = true;
 
 async function initBooksPage() {
     const listLoading = document.getElementById('listLoading');
-    const pathsToTry = ['/englishbook/data/books.json', '/data/books.json', './data/books.json', '../data/books.json'];
+    const basePath = '/englishbook/';
+    const currentPath = window.location.pathname;
+    const isBooksPage = currentPath.includes('books.html');
+    
+    const pathsToTry = [
+        basePath + 'data/books.json',
+        '/data/books.json',
+        isBooksPage ? './data/books.json' : '../data/books.json',
+        isBooksPage ? '../data/books.json' : './data/books.json',
+        'data/books.json'
+    ];
     
     for (const path of pathsToTry) {
         try {
