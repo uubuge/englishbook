@@ -1,7 +1,7 @@
 import './style.css';
-import booksData from './data/books.json';
 
 let books = [];
+let booksData = [];
 let filteredBooks = [];
 let searchIndex = new Map();
 let currentBookId = null;
@@ -11,15 +11,29 @@ const itemsPerPage = 50;
 let isLoading = false;
 let hasMore = true;
 
-function initBooksPage() {
-    books = booksData;
-    filteredBooks = books;
-    buildSearchIndex();
-    setupStats();
-    setupScroll();
-    setupSearch();
-    setupModal();
-    resetAndLoad();
+async function initBooksPage() {
+    try {
+        let response;
+        try {
+            response = await fetch('/englishbook/data/books.json');
+        } catch (e) {
+            response = await fetch('/data/books.json');
+        }
+        
+        if (!response.ok) throw new Error('网络错误');
+        
+        booksData = await response.json();
+        books = booksData;
+        filteredBooks = books;
+        buildSearchIndex();
+        setupStats();
+        setupScroll();
+        setupSearch();
+        setupModal();
+        resetAndLoad();
+    } catch (error) {
+        console.error('加载数据失败:', error);
+    }
 }
 
 function buildSearchIndex() {
