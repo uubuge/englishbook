@@ -13,34 +13,35 @@ let hasMore = true;
 
 async function initBooksPage() {
     const listLoading = document.getElementById('listLoading');
+    const pathsToTry = ['/englishbook/data/books.json', '/data/books.json', './data/books.json', '../data/books.json'];
     
-    try {
-        let basePath = '';
-        if (window.location.pathname.includes('/englishbook/')) {
-            basePath = '/englishbook';
+    for (const path of pathsToTry) {
+        try {
+            const response = await fetch(path);
+            if (!response.ok) continue;
+            
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) continue;
+            
+            booksData = await response.json();
+            books = booksData;
+            filteredBooks = books;
+            buildSearchIndex();
+            setupStats();
+            setupScroll();
+            setupSearch();
+            setupModal();
+            resetAndLoad();
+            return;
+        } catch (error) {
+            console.log('尝试路径失败:', path, error.message);
+            continue;
         }
-        
-        let response = await fetch(`${basePath}/data/books.json`);
-        if (!response.ok) {
-            response = await fetch('/data/books.json');
-        }
-        
-        if (!response.ok) throw new Error('网络错误');
-        
-        booksData = await response.json();
-        books = booksData;
-        filteredBooks = books;
-        buildSearchIndex();
-        setupStats();
-        setupScroll();
-        setupSearch();
-        setupModal();
-        resetAndLoad();
-    } catch (error) {
-        console.error('加载数据失败:', error);
-        if (listLoading) {
-            listLoading.innerHTML = '<div style="color:#e74c3c;padding:20px;text-align:center;">加载失败，请刷新页面重试</div>';
-        }
+    }
+    
+    console.error('所有路径都加载失败');
+    if (listLoading) {
+        listLoading.innerHTML = '<div style="color:#e74c3c;padding:20px;text-align:center;">加载失败，请检查网络连接或联系管理员</div>';
     }
 }
 
