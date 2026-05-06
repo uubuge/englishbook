@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>有声书定价目录 - 叶兴阳英语教学方法</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/englishbook/assets/main-BlGUDsPN.js"></script>
+  <link rel="stylesheet" crossorigin href="/englishbook/assets/style-CeimcpZc.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">叶兴阳英语教学</a>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="books.html" class="nav-link active">图书列表</a>
+                <a href="pricing.html" class="nav-link">打包套餐</a>
+                <a href="custom.html" class="nav-link">定制编辑</a>
+                <a href="contact.html" class="nav-link">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="books-page">
+        <div class="page-header">
+            <h1>📚 叶兴阳双语音标有声书定价目录</h1>
+            <p>探索海量有声书资源，找到属于你的故事</p>
+        </div>
+
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-box" id="searchInput" placeholder="搜索书名（支持中文和英文）...">
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="totalDuration">-</div>
+                <div class="stat-label">总时长</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="totalPrice">-</div>
+                <div class="stat-label">价格范围</div>
+            </div>
+        </div>
+
+        <div class="virtual-scroll-container" id="scrollContainer">
+            <div class="list-loading" id="listLoading">
+                <div class="loading-spinner"></div>
+                <div>正在加载书库...</div>
+            </div>
+            <div class="book-grid" id="bookGrid"></div>
+        </div>
+
+        <div class="no-results" id="noResults">
+            <div class="no-results-icon">📖</div>
+            <div class="no-results-text">未找到匹配的图书</div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <button class="modal-close" id="modalClose">×</button>
+                <div class="modal-title-zh" id="modalTitleZh"></div>
+                <div class="modal-title-en" id="modalTitleEn"></div>
+                <div class="modal-info">
+                    <div class="modal-info-item"><span>⏱️</span><span id="modalDuration"></span></div>
+                    <div class="modal-info-item"><span>💰</span><span id="modalPrice"></span></div>
+                    <div class="modal-info-item"><span>📖</span><span id="modalGutenbergId"></span></div>
+                </div>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <div class="modal-loading">
+                    <div class="loading-spinner"></div>
+                    <div>正在加载小说全文...</div>
+                </div>
+            </div>
+            <div class="modal-qq">
+                <span>需要购买？</span>
+                <a href="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=704100972&card_type=person&source=qrcode" class="qq-link">🐧 添加QQ：704100972</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 叶兴阳英语教学方法. 版权所有.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const navLinks = document.getElementById('navLinks');
+            if (navToggle && navLinks) {
+                navToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
