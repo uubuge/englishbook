@@ -13,15 +13,12 @@ let hasMore = true;
 
 async function initBooksPage() {
     const listLoading = document.getElementById('listLoading');
-    const basePath = '/englishbook/';
-    const currentPath = window.location.pathname;
-    const isBooksPage = currentPath.includes('books.html');
-    
+    const baseUrl = import.meta.env.BASE_URL;
     const pathsToTry = [
-        basePath + 'data/books.json',
+        baseUrl + 'data/books.json',
+        './data/books.json',
+        '../data/books.json',
         '/data/books.json',
-        isBooksPage ? './data/books.json' : '../data/books.json',
-        isBooksPage ? '../data/books.json' : './data/books.json',
         'data/books.json'
     ];
     
@@ -29,9 +26,6 @@ async function initBooksPage() {
         try {
             const response = await fetch(path);
             if (!response.ok) continue;
-            
-            const contentType = response.headers.get('content-type');
-            if (!contentType || !contentType.includes('application/json')) continue;
             
             booksData = await response.json();
             books = booksData;
