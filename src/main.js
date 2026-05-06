@@ -12,11 +12,16 @@ let isLoading = false;
 let hasMore = true;
 
 async function initBooksPage() {
+    const listLoading = document.getElementById('listLoading');
+    
     try {
-        let response;
-        try {
-            response = await fetch('/englishbook/data/books.json');
-        } catch (e) {
+        let basePath = '';
+        if (window.location.pathname.includes('/englishbook/')) {
+            basePath = '/englishbook';
+        }
+        
+        let response = await fetch(`${basePath}/data/books.json`);
+        if (!response.ok) {
             response = await fetch('/data/books.json');
         }
         
@@ -33,6 +38,9 @@ async function initBooksPage() {
         resetAndLoad();
     } catch (error) {
         console.error('加载数据失败:', error);
+        if (listLoading) {
+            listLoading.innerHTML = '<div style="color:#e74c3c;padding:20px;text-align:center;">加载失败，请刷新页面重试</div>';
+        }
     }
 }
 
