@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node copy-alice-files.js",
     "preview": "vite preview",
-    "deploy": "vite build && gh-pages -d dist"
+    "deploy": "vite build && node copy-alice-files.js && gh-pages -d dist"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0",
-    "vite": "^5.4.0"
+    "vite": "^5.4.0",
+    "vite-plugin-static-copy": "^4.1.0"
   }
 }
