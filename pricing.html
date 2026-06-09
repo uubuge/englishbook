@@ -158,9 +158,16 @@
             const navToggle = document.getElementById('navToggle');
             const navLinks = document.getElementById('navLinks');
             if (navToggle && navLinks) {
-                navToggle.addEventListener('click', function() {
+                // 支持点击和触摸事件
+                navToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
                     navLinks.classList.toggle('active');
                 });
+                // 移动端触摸支持
+                navToggle.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    navLinks.classList.toggle('active');
+                }, { passive: false });
             }
         });
     </script>
